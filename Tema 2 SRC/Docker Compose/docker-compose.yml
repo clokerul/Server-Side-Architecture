@@ -1,0 +1,33 @@
+version: "3.0"
+services:
+  postgres_db_container:
+    image: postgres:latest
+    volumes:
+      - database-volume:/var/lib/postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 'rootpass'
+    hostname: database
+    networks:
+      - database-net
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres_db_container
+    ports:
+      - 8080:8080
+    hostname: dbadmin
+    networks:
+      - database-net
+      - local-net
+
+volumes:
+  database-volume:
+
+networks:
+  database-net:
+    driver: bridge
+  local-net:
+    driver: bridge

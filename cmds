@@ -1,0 +1,17 @@
+#Network creation
+sudo docker network create -d bridge database-net
+
+#Display all images
+sudo docker image ls
+
+#Display all running containers
+sudo docker container ls
+
+#Start container
+sudo docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=tema1_sprc -d mysql:latest
+
+#Stop container
+sudo docker stop NAME
+
+#Delete image by id
+sudo docker rmi ImageID
